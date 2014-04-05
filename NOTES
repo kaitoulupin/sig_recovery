@@ -1,0 +1,21 @@
+
+* Set the seed for the PRNG to some fixed value (for testing/devel purposes); we can change it back to whatever the default seed method is once the code works.
+   >> help rng
+   >> rng('default') % Mersenne twister (this is a pretty good PRNG), seed 0
+  
+
+* Draw prandom vectors (TODO: is this right?  cf. loldog.jpg)
+   >> N = ...; d = ...;
+   >> mu = zeros([N d]);
+   >> Sigma = 1/N * eye([d d]);
+   >> Phi = mvnrnd(mu,Sigma);
+
+   We can normalize the columns of Phi (to pass M1 of Section III part A), but it's not needed for the recovery algorithm.
+
+
+* Do a QR ``insert'' (adding a column) in step 4 of Algorithm 3!
+   >> help qrinsert
+   >> [Q1,R1] = qrinsert(Q,R,n+1,new_col,'col'); % insert column on the right side of A
+
+
+* Code documentation: There should be a way that we can get `help our_custom_function` to spit out a description, usage, etc.  It's prolly overkill for our project, but it might be neat.
