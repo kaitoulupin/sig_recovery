@@ -10,7 +10,7 @@
    >> Sigma = 1/N * eye([d d]);
    >> Phi = mvnrnd(mu,Sigma);
 
-   We can normalize the columns of Phi (to pass M1 of Section III part A), but it's not needed for the recovery algorithm.
+   Wcan normalize the columns of Phi (to pass M1 of Section III part A), but it's not needed for the recovery algorithm.
 
 
 * Do a QR ``insert'' (adding a column) in step 4 of Algorithm 3!
