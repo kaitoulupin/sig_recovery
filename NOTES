@@ -20,4 +20,4 @@
 
 * Code documentation: There should be a way that we can get `help our_custom_function` to spit out a description, usage, etc.  It's prolly overkill for our project, but it might be neat.
    
-   Update: check out mmfile_header_template.m for a nice header template.
+   Update: check out mfile_header_template.m for a nice header template.
