@@ -33,7 +33,7 @@ function [] = test_omp_smallN()
 
 
 %% For repeatability, set PRNG (Mersenne twister) and seed (seed = 0)
-%rng('default');
+rng('default');
 
 
 %% General parameters

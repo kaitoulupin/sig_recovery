@@ -29,6 +29,8 @@ function [] = test_omp_thm2()
 %                  test_recovery became plot_recovery.  The value of K
 %                  can be bounded given the requirement delta>1/d (see
 %                  "GC.pdf" page 7).
+%  11 April 2014 - sparsity level m = ceil(0.95*d) is _very_ full; try
+%                  m = ceil(0.05*d) for a sparse signal
                     
 
 
@@ -43,7 +45,7 @@ K = 5; %For our particular choices, K<=6.7874 is good.  See GC.pdf
 
 
 %% Generate reference signal and sparsify
-m = ceil(0.95*d); % sparsity level
+m = ceil(0.05*d); % sparsity level (I think of m as amount filled)
 % reference signal
 s_full = 2*rand([d 1])-1; % uniform distribution on [-1,1]
 num_remove_inds = d-m;
