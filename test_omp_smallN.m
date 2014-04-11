@@ -1,19 +1,16 @@
-function [] = test_omp_thm2()
-% test_OMP_Thm2 - Driver routine to test signal recovery algorithm.
+function [] = test_omp_smallN()
+% test_omp_smallN - Driver routine to test signal recovery algorithm.
 %                 Specifically, test that OMP works using the value of N
 %                 given in Theorem 2 of Tropp 2007      
 %
 % Syntax: 
-%  [] = test_omp_thm2()
+%  [] = test_omp_smallN()
 %
 % Inputs:
 %  None
 %
 % Outputs:
 %  None
-%
-% Example:
-%  test_omp_thm2()
 %
 % Dependencies:
 %  plot_recovery
@@ -29,21 +26,25 @@ function [] = test_omp_thm2()
 %                  test_recovery became plot_recovery.  The value of K
 %                  can be bounded given the requirement delta>1/d (see
 %                  "GC.pdf" page 7).
+%  11 April 2014 - Copied test_omp_thm2.m; we are checking the case of
+%                  d > N, giving rise to an R (from QR) that is short
+%                  and fat.
                     
 
 
 %% For repeatability, set PRNG (Mersenne twister) and seed (seed = 0)
-rng('default');
+%rng('default');
 
 
 %% General parameters
-d = 50; % signal length
+d = 256; % signal length
 delta = 0.1; % 0 < delta < 0.36, 1-2*delta <= OMP recovery probability
 K = 5; %For our particular choices, K<=6.7874 is good.  See GC.pdf
 
 
 %% Generate reference signal and sparsify
-m = ceil(0.95*d); % sparsity level
+m = ceil((1-0.95)*d); % sparsity level
+m = 30
 % reference signal
 s_full = 2*rand([d 1])-1; % uniform distribution on [-1,1]
 num_remove_inds = d-m;
@@ -55,7 +56,8 @@ s(sparse_inds) = s_full(sparse_inds); % sparse reference signal
 
 
 %% Measurment vectors
-N = ceil(K*m*log(d/delta)); % N from Thm 2 of Tropp 2007
+%N = ceil(K*m*log(d/delta)); % N from Thm 2 of Tropp 2007
+N = 150
 
 mu_Phi = zeros([N d]); % mean
 mu_Sigma = 1/N*eye([d d]); % covariance
@@ -109,5 +111,5 @@ s_hat(Lambda) = x;
 plot_recovery(s,s_hat)
 
 
-end % test_omp_thm2
+end % test_omp_smallN
 

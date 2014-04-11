@@ -1,6 +1,4 @@
 
-write teh codez!
-
 * whenever we're making plots for the report, we can use matlab2tikz:
    - http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz
    - It'll be the most beautiful thing you've ever seen.
@@ -12,4 +10,7 @@ April 8
    - use 2-norm for recovery metric?
    - what is a good cut-off for when the signal is recovered?
 
-* The value of N in Theorem 2 of Tropp 2007 is quite large; I believe that Tropp et al. discussed _much_ smaller values of N in Tropp 2007.
+* Make OMP algo m-file
+   - How to select the random seed
+   - Need to think about this a bit more
+

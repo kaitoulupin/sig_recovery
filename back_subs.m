@@ -26,25 +26,22 @@ function [x] = back_subs(R,b)
 ZERO_TOL = 10^(-14);
 
 [m,n] = size(R);
-
-if (m < n)
-   error('back_subs: input matrix R is not ``tall and skinny``');
-end
+minmn = min([m,n]);
 
 x = zeros([n 1]);
 
-if (abs(R(n,n)) < ZERO_TOL)
+if (abs(R(minmn,minmn)) < ZERO_TOL)
    error('back_subs: input matrix R is singular to precision ZERO_TOL');
 end
 
-x(n) = b(n)/R(n,n);
+x(minmn) = b(minmn)/R(minmn,minmn);
 
-for i=n-1:-1:1
+for i=minmn-1:-1:1
    if (abs(R(i,i)) < ZERO_TOL)
       error('back_subs: input matrix R is singular to precision ZERO_TOL');
    end
 
-   x(i) = (b(i) - R(i,i+1:n)*x(i+1:n))/R(i,i);
+   x(i) = (b(i) - R(i,i+1:minmn)*x(i+1:minmn))/R(i,i);
 end
 
 end % back_subs
