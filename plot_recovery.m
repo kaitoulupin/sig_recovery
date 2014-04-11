@@ -3,7 +3,7 @@ function [] = plot_recovery(x,y)
 %                 and their absolute difference
 %
 % Syntax: 
-%  [] = test_recovery(s,v)
+%  [] = plot_recovery(s,v)
 %
 % Inputs:
 %  x - reference signal; d vector
@@ -13,7 +13,7 @@ function [] = plot_recovery(x,y)
 %  None
 %
 % Example:
-%  test_recovery([1;2;3;4],[1.01;1.97;3.02;4.01]);
+%  plot_recovery([1;2;3;4],[1.01;1.97;3.02;4.01]);
 %
 % Dependencies:
 %  None
