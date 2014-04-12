@@ -6,12 +6,14 @@
 ———————————
 April 8
 
-* make a function that returns a Boolean value for whether or not the signal was correctly recovered
-   - use 2-norm for recovery metric?
-   - what is a good cut-off for when the signal is recovered?
-
-* Make OMP algo m-file
-   - How to select the random seed
-   - Need to think about this a bit more
+* check_recovery.m - check if the approximate signal is a good 
+      approximation to original signal
+   - We currently use inf-norm; should we use 2-norm for recovery metric?  
+   - we currently use 10^(-14) in each component; what is a good cut-off
+      for when the signal is recovered?
 
 * Recreate Figures 1,2 from Tropp 2007
+   - tropp_fig1_* is implemented, but takes a while to compute.
+   - do some matlab2tikz stuff
+
+* matlab's qrinsert routine is implemented in pretty much pure matlab script; we should be able to get a significant performance improvement if we use C++ or Fortran... or we could just dealwithit.jpg
