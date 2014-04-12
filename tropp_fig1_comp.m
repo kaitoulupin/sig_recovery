@@ -40,9 +40,9 @@ K = 5; %For our particular choices, K<=6.7874 is good.  See GC.pdf
 %% default savefile
 if (nargin == 0)
    if strcmp(computer(),'GLNXA64')
-      matfile = 'fig1_data_glnx64.mat';
+      matfile = 'tropp_fig1_data_glnx64.mat';
    elseif strcmp(computer(),'MACI64')
-      matfile = 'fig1_data_mac64.mat';
+      matfile = 'tropp_fig1_data_mac64.mat';
    else
       error('tropp_fig1_comp: default file not given for the arch used');
    end
@@ -52,17 +52,16 @@ save(matfile);
 
 
 %% figure parameters
-num_sigs = 50; % TODO change this to 1000
+num_sigs = 1000; % TODO change this to 1000
 m_vec = [4,12,20,28,36];
-N_vec = 1:20:d; % TODO finer resolution
+N_vec = 1:5:d; % TODO finer resolution, like 1:5:d
 percent_recovered = zeros([numel(N_vec) numel(m_vec)]);
 
 
 %% generate signals and try to recovery them
 for i_m = 1:numel(m_vec)
-   fprintf(1,'m = %d  N = ',m_vec(i_m));
    for i_N = 1:numel(N_vec)
-      fprintf(1,'%d ',N_vec(i_N));
+      fprintf(1,'\rm = %d  N = %d of %d',m_vec(i_m),N_vec(i_N),N_vec(end));
       mu_Phi = zeros([N_vec(i_N) d]); % mean
       Sigma_Phi = 1/N_vec(i_N)*eye([d d]); % covariance
       Phi = mvnrnd(mu_Phi,Sigma_Phi); % measurement matrix, columns

@@ -32,22 +32,33 @@ function [] = tropp_fig1_plot(matfile)
 % Revision history:
 %  11 April 2014 - date written
                     
-% default
+% default savefile
 if (nargin == 0)
    if strcmp(computer(),'GLNXA64')
-      matfile = 'fig1_data_glnx64.mat';
+      matfile = 'tropp_fig1_data_glnx64.mat';
    elseif strcmp(computer(),'MACI64')
-      matfile = 'fig1_data_mac64.mat';
+      matfile = 'tropp_fig1_data_mac64.mat';
    else
       error('tropp_fig1_plot: default file not found!');
    end
 end
 
+% load data
 load(matfile);
 
+% plot it!
 plot(N_vec,percent_recovered(:,:),'o-');
 title(sprintf('Percentage of input signals recovered (d=%d) (Gaussian)',d));
 xlabel('Number of measurments (N)');
 ylabel('Percentage recovered');
+
+legend(sprintf('m=%d',m_vec(1)),...
+       sprintf('m=%d',m_vec(2)),...
+       sprintf('m=%d',m_vec(3)),...
+       sprintf('m=%d',m_vec(4)),...
+       sprintf('m=%d',m_vec(5)),...
+       'Location','SouthEast');
+
+% TODO call matlab2tikz or whatever
 
 end % tropp_fig1_plot
