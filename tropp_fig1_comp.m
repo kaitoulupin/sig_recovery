@@ -76,6 +76,7 @@ for i_m = 1:numel(m_vec)
       end
    end
    fprintf(1,'\n');
+   save(matfile);
 end
 
 percent_recovered = percent_recovered / num_sigs * 100;

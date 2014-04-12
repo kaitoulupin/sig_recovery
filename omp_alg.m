@@ -16,6 +16,7 @@ function [s_hat] = omp_alg(m,Phi,v)
 %  back_subs
 % 
 % TODO:
+%  Speed up the QR step
 %
 % Authors: JF,EY
 % Revision history:
@@ -45,7 +46,11 @@ for t = 1:m
 
    % 4 - solve least squares problem
    % update QR decomp for new QR
-   [Q_Phi, R_Phi] = qrinsert(Q_Phi,R_Phi,t,Phi(:,lambda),'col');
+   % TODO: qrinsert is implemented in pure matlab code
+   %       it might be faster to just call QR (which is prolly 
+   %       implemented in MKL)
+   %[Q_Phi, R_Phi] = qrinsert(Q_Phi,R_Phi,t,Phi(:,lambda),'col');
+   [Q_Phi,R_Phi] = qr(Phi_t);
    rhs = transpose(Q_Phi)*v;
    x = back_subs(R_Phi,rhs);
    

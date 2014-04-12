@@ -16,4 +16,4 @@ April 8
    - tropp_fig1_* is implemented, but takes a while to compute.
    - do some matlab2tikz stuff
 
-* matlab's qrinsert routine is implemented in pretty much pure matlab script; we should be able to get a significant performance improvement if we use C++ or Fortran... or we could just dealwithit.jpg
+* matlab's qrinsert routine is implemented in pretty much pure matlab script; we should be able to get a significant performance improvement if we use C++ or Fortran... or we could just dealwithit.jpg.  Could use a parfor on the innermost loop of tropp_fig1_comp.m
