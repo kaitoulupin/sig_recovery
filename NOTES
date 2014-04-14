@@ -21,3 +21,10 @@
 * Code documentation: There should be a way that we can get `help our_custom_function` to spit out a description, usage, etc.  It's prolly overkill for our project, but it might be neat.
    
    Update: check out mfile_header_template.m for a nice header template.
+
+* DATA:
+   - tropp_fig1_data_glnx64.mat.bak_01
+      1000 vectors per N, vectors chosen with uniform random entries from [-1,1]
+
+   - tropp_fig1_data_glnx64.mat.bak_02
+      1000 vectors per N, vectors chosen with entries equal to 1.0; this is what they did in Tropp 2007

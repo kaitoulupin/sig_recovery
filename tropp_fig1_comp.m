@@ -52,9 +52,9 @@ save(matfile);
 
 
 %% figure parameters
-num_sigs = 1000; % TODO change this to 1000
+num_sigs = 1000;
 m_vec = [4,12,20,28,36];
-N_vec = 1:5:d; % TODO finer resolution, like 1:5:d
+N_vec = ceil(linspace(1,d,ceil((d-1)/5))); 
 percent_recovered = zeros([numel(N_vec) numel(m_vec)]);
 
 
@@ -67,7 +67,7 @@ for i_m = 1:numel(m_vec)
       Phi = mvnrnd(mu_Phi,Sigma_Phi); % measurement matrix, columns
 
       for sig_ind = 1:num_sigs
-         s = gen_sig(d,m_vec(i_m));
+         s = gen_sig(d,m_vec(i_m),1.0);
          v = Phi*s;
          s_hat = omp_alg(m_vec(i_m),Phi,v);
          

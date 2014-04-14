@@ -1,8 +1,9 @@
-function [s] = gen_sig(d,m)
+function [s] = gen_sig(d,m,fill_value)
 % gen_sig - generate a sparse random signal
 %
 % Syntax: 
 %  [s] = check_recovery(d,m)
+%  [s] = check_recovery(d,m,fill_value)
 %
 % Inputs:
 %  d - length of signal
@@ -21,7 +22,11 @@ function [s] = gen_sig(d,m)
 %  11 April 2014 - date written
 
 %% Generate reference signal and sparsify
-s_full = 2*rand([d 1])-1; % uniform distribution on [-1,1]
+if (nargin == 2)
+   s_full = 2*rand([d 1])-1; % uniform distribution on [-1,1]
+elseif (nargin > 2)
+   s_full = fill_value*ones([d 1]);
+end
 num_remove_inds = d-m;
 perm_inds = randperm(d);
 remove_inds = perm_inds(1:num_remove_inds);

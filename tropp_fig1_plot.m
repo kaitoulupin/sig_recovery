@@ -44,7 +44,7 @@ if (nargin == 0)
 end
 
 % load data
-load(matfile);
+load(matfile, '-mat');
 
 % plot it!
 plot(N_vec,percent_recovered(:,:),'o-');
