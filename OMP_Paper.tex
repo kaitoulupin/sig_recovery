@@ -2,7 +2,7 @@
 
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{setspace}
-\usepackage{Tabbing}
+%\usepackage{Tabbing}
 \usepackage{fancyhdr}
 \usepackage{amscd}
 %\usepackage{bbold}
@@ -58,7 +58,7 @@
 \section{Introduction}
 
 \subsection{Purpose of the Project}
-The main goal of this paper is to discuss and replicate the results from ``Signal Recovery from Random Measurements via Orthogonal Matching Pursuit" (Tropp,Gilbert, 2007).  We also explored a few cases that the paper does not explore on our own.  
+The main goal of this paper is to discuss and replicate the results from ``Signal Recovery from Random Measurements via Orthogonal Matching Pursuit" (Tropp,Gilbert, 2007). 
 
 \subsection{Introduction}
 Suppose that have an unknown vector $\s\in\R^d$ that has $m$ nonzero elements where, in most applications, $m<<d$.  Our goal is to recover $\s$ with a sequence of \emph{measurement vectors} $\{\x_i\}_{i=1}^N\subset\R^d$ such that we know the values 
@@ -70,13 +70,16 @@ There are two main questions involved with this type of problem:
 	\end{enumerate}
 To answer the first of these questions, it's clear that we would want at least $m$ measurement vectors, or else we would have an underdetermined system.  On the other hand, simply taking any basis, such as the canonical basis, in $\R^d$ is sufficient.  However, it turns out that we can do much better than this. \\
 
-The latter question has many answers.  In this paper, we will work with an algorithm called Orthogonal Matching Pursuit (OMP).  There are a number of algorithms that have been developed for this problem.
+The latter question has many answers.  In this paper, our main focus is on an algorithm called Orthogonal Matching Pursuit (OMP).  There are a number of algorithms that have been developed for this problem.  We will compare OMP with a similar algorithm known as Basis Pursuit (BP).
 
 	
-\subsection{Algorithm}
+\section{Orthogonal Matching Pursuit}
+
 
 Once we fix the number, $N$, of measurement vectors we want, the idea is to choose a subset of these measurement vectors to recover the signal $\s$.  This can be done by first taking the measurement vectors $\{\x_i\}_{i=1}^N$ and forming an $N\times d$ matrix $\Phi$.  The rows of $\Phi$ are the measurement vectors.  We will henceforth denote the columns by $\{\varphi_i\}_{i=1}^d$.  We can then collect the measurements $\langle \s,\x_i\rangle$ into a vector $\ve$, which leads to the system of equations$\ve=\Phi \s$.  The goal of OMP is to determine which columns of $\Phi$ are necessary for the matrix equation.  OMP does this in a greedy fashion by choosing the columns of $\Phi$ which are most stonrgly correlated to the remaining parts of $\ve$.  The below algorithm explains the full OMP method.\\\\
 
+
+\subsection{Algorithm}
 \begin{enumerate}
 	\item Fix an $N\times d$ matrix $\Phi$, $\ve\in\R^d$, and sparsity level $m$.
 	\item Initialize the residual $\arr_0=\ve$, index set $\Lambda_0=\emptyset$, and counter $t=1$.
@@ -85,7 +88,7 @@ Once we fix the number, $N$, of measurement vectors we want, the idea is to choo
 	\item Set $\Lambda_t=\Lambda_{t-1}\cup\{\lambda_t\}$ and $\Phi_t = [\Phi_{t-1} \phi_{\lambda_t}]$ where $\Phi_0$ is an empty matrix.
 	\item Solve the least squares problem 
 		$$x_t=argmin_\x \vectornorm{\ve-\Phi_t\x}_2.$$
-	\item Calculate the $t$th approximation to $\ve$ and residual via
+	\item Calculate the $t$-th approximation to $\ve$ and residual via
 		\begin{align*}
 			&\ay_t=\Phi_t\x_t\\
 			&\arr_t=\ve-\ay_t.
@@ -93,13 +96,17 @@ Once we fix the number, $N$, of measurement vectors we want, the idea is to choo
 	\item So long as $t<m$, return to Step 2.
 \end{enumerate}
 
+\subsection{Operations Count}
+There are four main steps involved in the algorithm from above.  The first is Step 3, which relies on $d$ inner products of computational cost $mN$.  Step 3 calls for a $QR$ decompositions via adding columns.  In practice, this should only cost \textbf{FILL THIS IN}.  We will later discuss why our implementation of OMP costs more (see Further Extensions).  Step 5 solves the least squares problem, costing \textbf{FILL THIS IN}.  Finally, we must compute the $t$-th approximation in Step 6, which costs $2mn$.  This leads to a total cost of
+	$$+2mn\approx mNd$$
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Further Extensions}
 \subsection{Implement QR via insertion}
-MATLAB SUCKS, MUWAHAHAHAHA!
+MATLAB SUCKS, MUWAHAHAHAHA!  I hate MATLAB.
 
 
 \end{document}
